@@ -26,7 +26,7 @@ const handlePending = state => {
     name: 'cars',
     initialState,
     reducers: {
-      setFilter: (state, action) => {
+      setPrice: (state, action) => {
         state.filter = action.payload;
       },
     },

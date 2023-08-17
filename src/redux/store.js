@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { carsReducer } from './slice';
 
 const favoritesPersistConfig = {
-    key: 'favorites',
+    key: 'cars',
     storage,
     whitelist: ['favorites'],
   };
