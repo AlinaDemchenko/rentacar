@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import CarList from "../components/CarList";
 import { useDispatch } from "react-redux";
 import { getCarsThunk } from "../redux/operation";
+import SearchForm from "../components/SearchForm";
 
 
 function Catalog() {
@@ -13,6 +14,7 @@ dispatch(getCarsThunk())
 
   return (
     <main className="p-5">
+      <SearchForm/>
         <CarList/>
     </main>
   );

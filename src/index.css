@@ -12,19 +12,35 @@
   body {
     margin: 0;
   }
+
+  a {
+    @apply transition-all hover:tracking-wider outline-none;
+  }
 }
 
 @layer components{
+  .layout{
+    @apply max-h-screen w-screen bg-[url('./images/lines2.png')] bg-contain bg-no-repeat bg-right-bottom;
+  }
+  .screen{
+   @apply max-h-screen w-screen; 
+  }
   .title {
     @apply text-6xl font-extralight text-orange-800 tracking-tight inline mr-3 after:block after:absolute after:h-0.5 after:w-4/6 after:bg-orange-800 after:left-0 after:top-72 after:animate-[wiggle_1s_linear_both];
   }
   .activeLink{
     @apply relative after:block after:absolute after:rounded-sm after:h-1 after:w-[120%] after:bg-orange-800 after:-left-[10%] after:-bottom-2 after:animate-[scale_300ms_linear_backwards];
   }
-  .layout{
-    @apply max-h-screen h-screen bg-[url('./images/lines2.png')] bg-contain bg-no-repeat bg-right-bottom;
+  .price{
+    @apply absolute right-0 top-[17.5rem] text-2xl border-2 border-orange-800 shadow-2xl rounded-full p-2.5 w-24 h-24 flex justify-center items-center bg-white/10 backdrop-blur;
   }
-  .screen{
-   @apply max-h-screen h-screen 
+  .button{
+   @apply h-10 rounded-2xl text-white text-lg tracking-wide font-extralight bg-orange-800 transition-shadow hover:shadow-[0_6px_20px_rgba(0,0,0,0.25),0_10px_10px_rgba(0,0,0,0.22)] outline-black outline-1;
+  }
+  .input{
+    @apply border rounded-md h-10 font-light border-gray-500 px-1 outline-orange-800 outline-1 placeholder:text-lg;
+  }
+  .label{
+    @apply mr-6 inline-block tracking-wider;
   }
 }

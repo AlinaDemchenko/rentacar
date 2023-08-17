@@ -5,7 +5,6 @@ import { useLocation } from "react-router-dom";
 
 function Layout() {
   const location = useLocation();
-  console.log('location: ', location);
 
   return (
     <div className={location.pathname === "/" ? "layout" : "screen"}>

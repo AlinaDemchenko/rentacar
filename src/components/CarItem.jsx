@@ -17,55 +17,60 @@ function CarItem({
     mileage,
   },
 }) {
-  console.log(img);
+  const descriptionSplit =
+    description?.length > 220
+      ? description.split("").splice(0, 220).join("") + "..."
+      : description;
+
   return (
-    <li className="relative p-1">
-      <div className="w-full h-56 overflow-hidden mb-12 rounded-sm">
-      <img src={img} alt={model} className="object-cover w-full h-full"/>
+    <li className="relative p-1 h-[700px]">
+      <div className="w-full h-80 overflow-hidden mb-12 rounded-sm">
+        <img src={img} alt={model} loading="lazy" className="object-cover w-full h-full" />
       </div>
-      <b className="absolute right-0 top-[11.5rem] text-2xl border-2 border-orange-800 shadow-2xl rounded-full p-2.5 block w-24 h-24 flex justify-center items-center bg-white/10 backdrop-blur">{rentalPrice}</b>
+      <b className="price">{rentalPrice}</b>
       <h2 className="text-xl font-light tracking-wider mb-2">
         {make}
         <span className="text-orange-800"> {model}</span>
       </h2>
-      <ul className="pr-1.5">
-        <li>
-          <p className="text-xl font-semibold mb-1">{year}</p>
+      <ul>
+        <li className="mb-1">
+          <p className="text-xl font-semibold">
+            {year} <span className="font-thin">| {type}</span>
+          </p>
+        </li>
+        <li className="pr-1.5 mb-1.5">
+          <p className="font-extralight">{descriptionSplit}</p>
         </li>
         <li>
-        <p className="font-extralight">{description}</p>
+          <p>
+            {rentalCompany}, {address.split(", ").slice(-2).join(", ")}
+          </p>
         </li>
-        <li>
-          <p>type: {type}</p>
-        </li>
-        {/* <li>
-          <p>fuel consumption: {fuelConsumption}</p>
-        </li>
-        <li>
-          <p>engine size: {engineSize}</p>
-        </li>
-        <li>
-          <p>accessories: {accessories}</p>
-        </li>
-        <li>
-          <p>functionalities: {functionalities}</p>
-        </li> */}
-        <li>
-          <p>rental company: {rentalCompany}</p>
-        </li>
-        <li>
-          <p>address: {address.split(", ").slice(-2).join(", ")}</p>
-        </li>
-        {/* <li>
-          <p>rental conditions: {rentalConditions}</p>
-        </li>
-        <li>
-          <p>mileage: {mileage}</p>
-        </li> */}
       </ul>
-      <button type="button">Learn more</button>
+      <button type="button" className="button w-5/6 absolute bottom-3 translate-x-1/2 right-1/2">
+        LEARN MORE
+      </button>
     </li>
   );
 }
+
+// <li>
+//   <p>fuel consumption: {fuelConsumption}</p>
+// </li>
+// <li>
+//   <p>engine size: {engineSize}</p>
+// </li>
+// <li>
+//   <p>accessories: {accessories}</p>
+// </li>
+// <li>
+//   <p>functionalities: {functionalities}</p>
+// </li>
+// <li>
+//   <p>rental conditions: {rentalConditions}</p>
+// </li>
+// <li>
+//   <p>mileage: {mileage}</p>
+// </li>
 
 export default CarItem;
