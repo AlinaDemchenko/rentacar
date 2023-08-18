@@ -4,6 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --toastify-color-info: #fff !important;
+  --toastify-color-dark:  rgb(154 52 18) !important;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -14,22 +19,22 @@
   }
 
   a {
-    @apply transition-all hover:tracking-wider outline-none;
+    @apply transition-all tracking-wider hover:tracking-widest outline-none;
   }
 }
 
 @layer components{
   .layout{
-    @apply max-h-screen w-screen bg-[url('./images/lines2.png')] bg-contain bg-no-repeat bg-right-bottom;
+    @apply min-h-screen w-screen bg-[url('./images/lines2.png')] bg-contain bg-no-repeat bg-right-bottom;
   }
   .screen{
-   @apply max-h-screen w-screen; 
+   @apply min-h-screen w-screen; 
   }
   .title {
     @apply text-6xl font-extralight text-orange-800 tracking-tight inline mr-3 after:block after:absolute after:h-0.5 after:w-4/6 after:bg-orange-800 after:left-0 after:top-72 after:animate-[wiggle_1s_linear_both];
   }
   .activeLink{
-    @apply relative after:block after:absolute after:rounded-sm after:h-1 after:w-[120%] after:bg-orange-800 after:-left-[10%] after:-bottom-2 after:animate-[scale_300ms_linear_backwards];
+    @apply relative hover:tracking-wider after:block after:absolute after:rounded-sm after:h-1 after:w-[120%] after:bg-orange-800 after:-left-[10%] after:-bottom-2 after:animate-[scale_300ms_linear_backwards];
   }
   .price{
     @apply absolute right-0 top-[17.5rem] text-2xl border-2 border-orange-800 shadow-2xl rounded-full p-2.5 w-24 h-24 flex justify-center items-center bg-white/10 backdrop-blur;
@@ -42,5 +47,8 @@
   }
   .label{
     @apply mr-6 inline-block tracking-wider;
+  }
+  .error-message{
+    @apply absolute -top-11 w-72 text-orange-700;
   }
 }

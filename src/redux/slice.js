@@ -4,11 +4,8 @@ import { getCarsThunk } from "./operation";
 const initialState = {
   cars: [],
   favorites: [],
-  filter: {
-    price: null,
-    mileage: { from: null, to: null },
-    brand: null,
-  },
+  filter: null,
+  modalId: null,
   root: { isLoading: false, error: null },
 };
 
@@ -26,10 +23,12 @@ const handlePending = state => {
     name: 'cars',
     initialState,
     reducers: {
-      setPrice: (state, action) => {
+      setFilter: (state, action) => {
         state.filter = action.payload;
       },
-    },
+      setModalId: (state, action) => {
+        state.modalId = action.payload;
+    }},
     extraReducers: builder => {
       builder
         .addCase(getCarsThunk.fulfilled, (state, action) => {
@@ -41,5 +40,5 @@ const handlePending = state => {
     },
   });
 
-export const { setFilter } = carsSlice.actions;
+export const { setFilter, setModalId } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;

@@ -1,20 +1,21 @@
-function CarItem({
+function CarItem({handlerOpenDetails,
   carData: {
+    id,
     year,
     make,
     model,
     type,
     img,
     description,
-    fuelConsumption,
-    engineSize,
-    accessories,
-    functionalities,
+    // fuelConsumption,
+    // engineSize,
+    // accessories,
+    // functionalities,
     rentalPrice,
     rentalCompany,
     address,
-    rentalConditions,
-    mileage,
+    // rentalConditions,
+    // mileage,
   },
 }) {
   const descriptionSplit =
@@ -47,30 +48,11 @@ function CarItem({
           </p>
         </li>
       </ul>
-      <button type="button" className="button w-5/6 absolute bottom-3 translate-x-1/2 right-1/2">
+      <button type="button" onClick={()=>{handlerOpenDetails(id)}} className="button w-5/6 absolute bottom-3 translate-x-1/2 right-1/2">
         LEARN MORE
       </button>
     </li>
   );
 }
-
-// <li>
-//   <p>fuel consumption: {fuelConsumption}</p>
-// </li>
-// <li>
-//   <p>engine size: {engineSize}</p>
-// </li>
-// <li>
-//   <p>accessories: {accessories}</p>
-// </li>
-// <li>
-//   <p>functionalities: {functionalities}</p>
-// </li>
-// <li>
-//   <p>rental conditions: {rentalConditions}</p>
-// </li>
-// <li>
-//   <p>mileage: {mileage}</p>
-// </li>
 
 export default CarItem;

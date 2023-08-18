@@ -6,7 +6,7 @@ function Header() {
     <header className="px-10 py-1.5 mb-1">
       <nav>
       <ul className="font-light flex gap-x-12 items-center h-16">
-        <li className="w-16">
+        <li className="w-fit">
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "activeLink" : "")}
@@ -14,7 +14,7 @@ function Header() {
             Home
           </NavLink>
         </li>
-        <li className="w-16">
+        <li className="w-fit">
           <NavLink
             to="/catalog"
             className={({ isActive }) => (isActive ? "activeLink" : "")}
@@ -22,7 +22,7 @@ function Header() {
             Catalog
           </NavLink>
         </li>
-        <li className="w-16">
+        <li className="w-fit">
           <NavLink
             to="/favorites"
             className={({ isActive }) => (isActive ? "activeLink" : "")}
