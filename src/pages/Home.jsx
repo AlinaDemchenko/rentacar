@@ -6,7 +6,9 @@ function Home() {
       <div className="flex">
         <div className="w-max">
           <h1 className="title">
-            /// RENTACAR
+          <span className=" tracking-[-7px] text-orange-700 ">/</span>
+            <span className=" tracking-[-10px] text-orange-800 ">/</span>
+            <span className="tracking-[-13px] text-orange-900 ">/</span> RENTACAR
           </h1>
           <p className="text-6xl text-black font-extralight text-right mb-12 inline-block">
             24<span className="text-orange-800">/</span>7

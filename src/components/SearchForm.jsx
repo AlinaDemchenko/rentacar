@@ -11,7 +11,7 @@ import { useFormik } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
 import * as yup from "yup";
 
-function SearchForm({ handlerSetFilter }) {
+function SearchForm({ handlerSetFilter, handlerResetPage }) {
   const prices = useSelector(selectPriceOptions);
   const maxMileage = useSelector(selectMaxMileage);
   const maxPrice = useSelector(selectMaxPrice);
@@ -54,6 +54,7 @@ function SearchForm({ handlerSetFilter }) {
       values.price = values.price === "" ? maxPrice : values.price;
       if (Object.keys(errors).length === 0) {
         handlerSetFilter(values);
+        handlerResetPage();
         resetForm();
       } else {
         formik.setErrors(errors);
@@ -67,7 +68,11 @@ function SearchForm({ handlerSetFilter }) {
       className="flex w-fit h-16 mb-2.5 py-2 px-4 mx-auto gap-x-8 items-center"
     >
       {filter && (
-        <button type="button" onClick={() => handlerSetFilter(null)} className="text-orange-800 transition-transform hover:scale-125">
+        <button
+          type="button"
+          onClick={() => handlerSetFilter(null)}
+          className="text-orange-800 transition-transform hover:scale-125"
+        >
           <IoIosArrowBack className="inline w-10 h-10 translate-x-[1.625rem]" />
           <IoIosArrowBack className="inline w-10 h-10" />
         </button>

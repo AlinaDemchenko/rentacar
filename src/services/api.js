@@ -9,4 +9,13 @@ const $instance = axios.create({
     return data;
   };
 
+  // export const fetchCar = async (id) => {
+  //   console.log(id);
+  //   const { data } = await $instance.get(`/rentacar/${id}`);
+  //   console.log('data: ', data);
+  //   return data;
+  // };
+
+
+
  

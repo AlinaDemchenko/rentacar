@@ -25,6 +25,34 @@ module.exports = {
             transform: "scaleX(1)",
           },
         },
+        fadeIn: {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
+        collapseAccordion: {
+          "0%": {
+            "max-height": "1000px",
+            opacity: "1",
+          },
+          "100%": {
+            "max-height": "0",
+            opacity: "0",
+          },
+        },
+        expandAccordion: {
+          "0%": {
+            "max-height": "0",
+            opacity: "0",
+          },
+          "100%": {
+            "max-height": "1000px",
+            opacity: "1",
+          },
+        },
       },
     },
   },

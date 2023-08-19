@@ -1,4 +1,5 @@
-function CarItem({handlerOpenDetails,
+function CarItem({
+  handlerOpenDetails,
   carData: {
     id,
     year,
@@ -7,15 +8,9 @@ function CarItem({handlerOpenDetails,
     type,
     img,
     description,
-    // fuelConsumption,
-    // engineSize,
-    // accessories,
-    // functionalities,
     rentalPrice,
     rentalCompany,
     address,
-    // rentalConditions,
-    // mileage,
   },
 }) {
   const descriptionSplit =
@@ -26,7 +21,12 @@ function CarItem({handlerOpenDetails,
   return (
     <li className="relative p-1 h-[700px]">
       <div className="w-full h-80 overflow-hidden mb-12 rounded-sm">
-        <img src={img} alt={model} loading="lazy" className="object-cover w-full h-full" />
+        <img
+          src={img}
+          alt={model}
+          loading="lazy"
+          className="object-cover w-full h-full"
+        />
       </div>
       <b className="price">{rentalPrice}</b>
       <h2 className="text-xl font-light tracking-wider mb-2">
@@ -48,7 +48,13 @@ function CarItem({handlerOpenDetails,
           </p>
         </li>
       </ul>
-      <button type="button" onClick={()=>{handlerOpenDetails(id)}} className="button w-5/6 absolute bottom-3 translate-x-1/2 right-1/2">
+      <button
+        type="button"
+        onClick={() => {
+          handlerOpenDetails(id);
+        }}
+        className="button w-5/6 absolute bottom-3 translate-x-1/2 right-1/2"
+      >
         LEARN MORE
       </button>
     </li>

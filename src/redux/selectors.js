@@ -6,7 +6,13 @@ export const selectFilter = (state) => state.filter;
 
 export const selectLoading = (state) => state.root.isLoading;
 export const selectError = (state) => state.root.error;
+
 export const selectModalId = (state) => state.modalId;
+export const selectAccessoriesExpanded = (state) => state.isAccordionExpanded.accessories;
+export const selectFunctionalitiesExpanded = (state) => state.isAccordionExpanded.functionalities;
+export const selectConditionsExpanded = (state) => state.isAccordionExpanded.conditions;
+
+export const selectPage = (state) => state.page;
 
 export const selectPriceOptions = createSelector([selectCars], (cars) => {
   const rentalPrices = cars.map((obj) =>
@@ -21,6 +27,10 @@ export const selectPriceOptions = createSelector([selectCars], (cars) => {
   return priceOptions;
 });
 
+export const selectCarData = createSelector([selectCars, selectModalId], (cars, id) => {
+ return cars.find((car)=> car.id === id)
+});
+
 export const selectMaxMileage = createSelector([selectCars], (cars) => {
   const maxMileage = Math.max(...cars.map((car) => car.mileage));
   const numberOfDigits = maxMileage.toString().length;
@@ -32,21 +42,21 @@ export const selectMaxMileage = createSelector([selectCars], (cars) => {
 });
 
 export const selectMaxPrice = createSelector([selectCars], (cars) => {
-    const rentalPrices = cars.map((obj) =>
+  const rentalPrices = cars.map((obj) =>
     parseInt(obj.rentalPrice.replace("$", ""))
   );
   return Math.max(...rentalPrices);
 });
 
-export const selectBrands = createSelector([selectCars], (cars) =>{
-    const uniqueMakesSet = new Set(cars.map(car => car.make));
-    return Array.from(uniqueMakesSet)
-})
+export const selectBrands = createSelector([selectCars], (cars) => {
+  const uniqueMakesSet = new Set(cars.map((car) => car.make));
+  return Array.from(uniqueMakesSet);
+});
 
 export const selectFilteredCarList = createSelector(
   [selectCars, selectFilter],
   (cars, filter) => {
-      const mileageFrom = filter?.mileageFrom ? filter.mileageFrom : 0;
+    const mileageFrom = filter?.mileageFrom ? filter.mileageFrom : 0;
     return cars.filter((car) => {
       return (
         car.make.includes(filter?.brand) &&
@@ -58,4 +68,11 @@ export const selectFilteredCarList = createSelector(
   }
 );
 
-
+export const selectPaginatedCarsArray = createSelector(
+  [selectCars, selectFilteredCarList, selectFilter, selectPage],
+  (cars, filteredCarList, filter, page) => {
+    const actualCars = filter ? filteredCarList : cars;
+    const itemsPerPage = 8;
+    return actualCars.slice(0, page * itemsPerPage)
+  }
+);
