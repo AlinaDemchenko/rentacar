@@ -21,6 +21,19 @@ function Modal() {
   const isFunctionalitiesExpanded = useSelector(selectFunctionalitiesExpanded);
   const isConditionsExpanded = useSelector(selectConditionsExpanded);
 
+  console.log(carData.mileage.toLocaleString(undefined, { useGrouping: true }));
+
+  function formatMileage(mileage) {
+    const numberString = mileage.toString();
+    if (numberString.length >= 4) {
+      const integerPart = numberString.slice(0, -3);
+      const decimalPart = numberString.slice(-3);
+      return `${integerPart},${decimalPart}`;
+    } else {
+      return mileage;
+    }
+  }
+
   const toggleAccessories = () => {
     if (isFunctionalitiesExpanded) {
       dispatch(setFunctionalitiesExpanded());
@@ -96,11 +109,13 @@ function Modal() {
             className="absolute top-0 left-0 w-full h-full object-cover"
             alt={`${carData.make}, ${carData.model}`}
           />
-          <a className="contact-link" href="tel:+380730000000"><p>
-            <span className="tracking-[-7px] text-orange-700 ">/</span>
-            <span className="tracking-[-10px] text-orange-800 ">/</span>
-            <span className="tracking-[-13px] text-orange-900 ">/</span>
-            RENTACAR</p>
+          <a className="contact-link" href="tel:+380730000000">
+            <p>
+              <span className="tracking-[-7px] text-orange-700 ">/</span>
+              <span className="tracking-[-10px] text-orange-800 ">/</span>
+              <span className="tracking-[-13px] text-orange-900 ">/</span>
+              RENTACAR
+            </p>
           </a>
         </div>
         <div className="h-full py-3.5 px-1.5 col-span-1">
@@ -123,7 +138,10 @@ function Modal() {
               <p>{carData.description}</p>
             </li>
             <li>
-              <p>Mileage: {carData.mileage}</p>
+              <p>
+                Mileage:{" "}
+                {formatMileage(carData.mileage)}
+              </p>
             </li>
             <li>
               <p>Fuel consumption: {carData.fuelConsumption}</p>
