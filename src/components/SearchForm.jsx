@@ -10,13 +10,19 @@ import {
 import { useFormik } from "formik";
 import { IoIosArrowBack } from "react-icons/io";
 import * as yup from "yup";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
-function SearchForm({ handlerSetFilter, handlerResetPage }) {
+function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
   const prices = useSelector(selectPriceOptions);
   const maxMileage = useSelector(selectMaxMileage);
   const maxPrice = useSelector(selectMaxPrice);
   const brands = useSelector(selectBrands);
   const filter = useSelector(selectFilter);
+
+  useEffect(() => {
+    if (filter && filteredCarList.length === 0) toast.info("No cars match");
+  }, [filteredCarList, filter]);
 
   const searchValidationSchema = yup.object().shape({
     mileageFrom: yup
@@ -70,7 +76,10 @@ function SearchForm({ handlerSetFilter, handlerResetPage }) {
       {filter && (
         <button
           type="button"
-          onClick={() => handlerSetFilter(null)}
+          onClick={() => {
+            handlerSetFilter(null);
+            formik.resetForm();
+          }}
           className="text-orange-800 transition-transform hover:scale-125"
         >
           <IoIosArrowBack className="inline w-10 h-10 translate-x-[1.625rem]" />

@@ -1,17 +1,24 @@
 import SearchForm from "../components/SearchForm";
 import CarList from "../components/CarList";
+import LoadButton from "../components/LoadButton";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getCarsThunk } from "../redux/operation";
-import { setFilter, setModalId, setPage } from "../redux/slice";
+import {
+  deleteFavorites,
+  pushFavorites,
+  setFilter,
+  setModalId,
+  setPage,
+} from "../redux/slice";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import {
   selectCars,
+  selectFavorites,
   selectFilter,
   selectFilteredCarList,
   selectPaginatedCarsArray,
 } from "../redux/selectors";
-import { toast } from "react-toastify";
 
 function Catalog() {
   const dispatch = useDispatch();
@@ -19,52 +26,59 @@ function Catalog() {
   const filter = useSelector(selectFilter);
   const paginatedCarsArray = useSelector(selectPaginatedCarsArray);
   const cars = useSelector(selectCars);
-
-  useEffect(() => {
-    if (filter && filteredCarList === 0) toast.info("No cars match");
-  }, [filteredCarList, filter]);
+  const favorites = useSelector(selectFavorites);
 
   useEffect(() => {
     dispatch(getCarsThunk());
+    dispatch(setFilter(null))
   }, [dispatch]);
 
-  const handlerResetPage = () => {
+  const resetPage = () => {
     dispatch(setPage(1));
   };
 
-  const handlerSetFilter = (values) => {
+  const setSearchFilter = (values) => {
     dispatch(setFilter(values));
   };
 
-  const handlerOpenDetails = (id) => {
+  const openDetails = (id) => {
     dispatch(setModalId(id));
   };
 
-  const handlerUpload = () => {
+  const uploadCars = () => {
     dispatch(setPage());
   };
+
+  const toggleFavorites = (newCar) => {
+    if (favorites.length) {
+      const isFavorite = favorites.find((car) => {
+        return car.id === newCar.id;
+      });
+      if (isFavorite) {
+        dispatch(deleteFavorites(isFavorite.id));
+        return;
+      }
+    }
+    dispatch(pushFavorites(newCar));
+  };
+
+  const isButtonHidden =
+    (filter && filteredCarList.length <= paginatedCarsArray.length) ||
+    (!filter && cars.length <= paginatedCarsArray.length);
 
   return (
     <main className="p-5">
       <SearchForm
-        handlerSetFilter={handlerSetFilter}
-        handlerResetPage={handlerResetPage}
+        handlerSetFilter={setSearchFilter}
+        handlerResetPage={resetPage}
+        filteredCarList={filteredCarList}
       />
       <CarList
-        handlerOpenDetails={handlerOpenDetails}
+        handlerOpenDetails={openDetails}
         cars={paginatedCarsArray}
+        handleToggleFavorites={toggleFavorites}
       />
-      <button
-        type="button"
-        onClick={handlerUpload}
-        disabled={
-          (filter && filteredCarList.length <= paginatedCarsArray.length) ||
-          (!filter && cars.length <= paginatedCarsArray.length)
-        }
-        className="button bg-transparent mx-auto block text-sm text-orange-800 border w-1/4 disabled:hover:shadow-none border-orange-800 hover:shadow-[0_6px_20px_-3px_rgba(0,0,0,0.3)_inset,0_6px_16px_-6px_rgba(0,0,0,0.3)_inset]"
-      >
-        LOAD MORE
-      </button>
+      {!isButtonHidden && <LoadButton handleUploadCars={uploadCars}/>}
     </main>
   );
 }

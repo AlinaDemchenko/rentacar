@@ -12,7 +12,7 @@ import {
   selectConditionsExpanded,
   selectFunctionalitiesExpanded,
 } from "../redux/selectors";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiTwotonePhone } from "react-icons/ai";
 
 function Modal() {
   const carData = useSelector(selectCarData);
@@ -80,10 +80,7 @@ function Modal() {
   }, []);
 
   return (
-    <div
-      onClick={handleCloseModal}
-      className="overlay"
-    >
+    <div onClick={handleCloseModal} className="overlay">
       <div className="modal-window">
         <button
           type="button"
@@ -98,14 +95,14 @@ function Modal() {
             className="absolute top-0 left-0 w-full h-full object-cover"
             alt={`${carData.make}, ${carData.model}`}
           />
-          <a
-            className="contact-link"
-            href="tel:+380730000000"
-          >
+          <a className="contact-link" href="tel:+380730000000"><p>
             <span className="tracking-[-7px] text-orange-700 ">/</span>
             <span className="tracking-[-10px] text-orange-800 ">/</span>
             <span className="tracking-[-13px] text-orange-900 ">/</span>
-            RENTAL CAR
+            RENTAL CAR</p>
+            <span className="h-12 w-12 inline-block text-orange-800/80">
+              <AiTwotonePhone className="h-full w-full" />
+            </span>
           </a>
         </div>
         <div className="h-full py-3.5 px-1.5 col-span-1">

@@ -1,6 +1,9 @@
-function CarItem({
-  handlerOpenDetails,
-  carData: {
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { useSelector } from "react-redux";
+import { selectFavorites } from "../redux/selectors";
+
+function CarItem({ handlerOpenDetails, handleToggleFavorites, carData }) {
+  const {
     id,
     year,
     make,
@@ -11,8 +14,13 @@ function CarItem({
     rentalPrice,
     rentalCompany,
     address,
-  },
-}) {
+  } = carData;
+
+  const favorites = useSelector(selectFavorites);
+  const isCarFavorite = favorites.length
+    ? favorites.find((car) => car.id === id)
+    : false;
+
   const descriptionSplit =
     description?.length > 220
       ? description.split("").splice(0, 220).join("") + "..."
@@ -35,9 +43,21 @@ function CarItem({
       </h2>
       <ul>
         <li className="mb-1">
-          <p className="text-xl font-semibold">
+          <p className="text-xl font-semibold inline mr-1">
             {year} <span className="font-thin">| {type}</span>
           </p>
+          <button
+            className="inline font-normal align-sub"
+            onClick={() => {
+              handleToggleFavorites(carData);
+            }}
+          >
+            {isCarFavorite ? (
+              <AiFillStar className="h-6 w-6 text-orange-800" />
+            ) : (
+              <AiOutlineStar className="h-6 w-6" />
+            )}
+          </button>
         </li>
         <li className="pr-1.5 mb-1.5">
           <p className="font-extralight">{descriptionSplit}</p>

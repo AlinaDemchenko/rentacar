@@ -50,6 +50,12 @@ const carsSlice = createSlice({
     setModalId: (state, action) => {
       state.modalId = action.payload;
     },
+    pushFavorites: (state, action) => {
+      state.favorites.push(action.payload)
+    },
+    deleteFavorites: (state, action) => {
+    state.favorites = state.favorites.filter(car => car.id !== action.payload)
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -76,5 +82,7 @@ export const {
   setAccessoriesExpanded,
   setFunctionalitiesExpanded,
   setConditionsExpanded,
+  pushFavorites, 
+  deleteFavorites,
 } = carsSlice.actions;
 export const carsReducer = carsSlice.reducer;
