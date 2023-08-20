@@ -77,6 +77,7 @@ function Modal() {
       window.removeEventListener("keydown", handleCloseModal);
       document.body.classList.remove("modal-open");
     };
+    // eslint-disable-next-line
   }, []);
 
   return (
