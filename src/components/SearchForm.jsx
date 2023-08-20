@@ -12,6 +12,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import * as yup from "yup";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
+import PropTypes from 'prop-types';
 
 function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
   const prices = useSelector(selectPriceOptions);
@@ -178,5 +179,28 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
     </form>
   );
 }
+
+SearchForm.propTypes = {
+  filteredCarList: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    year: PropTypes.number,
+    make: PropTypes.string,
+    model: PropTypes.string,
+    type: PropTypes.string,
+    img: PropTypes.string,
+    description: PropTypes.string,
+    fuelConsumption: PropTypes.string,
+    engineSize: PropTypes.string,
+    accessories: PropTypes.arrayOf(PropTypes.string),
+    functionalities:  PropTypes.arrayOf(PropTypes.string),
+    rentalPrice: PropTypes.string,
+    rentalCompany: PropTypes.string,
+    address: PropTypes.string,
+    rentalConditions: PropTypes.string,
+    mileage: PropTypes.number,
+  })),
+  handlerSetFilter: PropTypes.func.isRequired,
+  handlerResetPage: PropTypes.func.isRequired,
+};
 
 export default SearchForm;

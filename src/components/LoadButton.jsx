@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 function LoadButton({handleUploadCars}) {
   return (
@@ -10,5 +11,9 @@ function LoadButton({handleUploadCars}) {
   </button>
   )
 }
+
+LoadButton.propTypes = {
+  handleUploadCars: PropTypes.func.isRequired,
+};
 
 export default LoadButton

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { useSelector } from "react-redux";
 import { selectFavorites } from "../redux/selectors";
@@ -80,5 +81,28 @@ function CarItem({ handlerOpenDetails, handleToggleFavorites, carData }) {
     </li>
   );
 }
+
+CarItem.propTypes = {
+  carData: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    year: PropTypes.number,
+    make: PropTypes.string.isRequired,
+    model: PropTypes.string.isRequired,
+    type: PropTypes.string,
+    img: PropTypes.string.isRequired,
+    description: PropTypes.string,
+    fuelConsumption: PropTypes.string,
+    engineSize: PropTypes.string,
+    accessories: PropTypes.arrayOf(PropTypes.string),
+    functionalities:  PropTypes.arrayOf(PropTypes.string),
+    rentalPrice: PropTypes.string.isRequired,
+    rentalCompany: PropTypes.string,
+    address: PropTypes.string,
+    rentalConditions: PropTypes.string,
+    mileage: PropTypes.number,
+  }).isRequired,
+  handleToggleFavorites: PropTypes.func.isRequired,
+  handlerOpenDetails: PropTypes.func.isRequired,
+};
 
 export default CarItem;

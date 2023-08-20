@@ -100,7 +100,7 @@ function Modal() {
             <span className="tracking-[-7px] text-orange-700 ">/</span>
             <span className="tracking-[-10px] text-orange-800 ">/</span>
             <span className="tracking-[-13px] text-orange-900 ">/</span>
-            RENTAL CAR</p>
+            RENTACAR</p>
             <span className="h-12 w-12 inline-block text-orange-800/80">
               <AiTwotonePhone className="h-full w-full" />
             </span>
