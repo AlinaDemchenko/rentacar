@@ -63,10 +63,6 @@ const carsSlice = createSlice({
         state.root.isLoading = false;
         state.cars = action.payload;
       })
-      // .addCase(getCarThunk.fulfilled, (state, action) => {
-      //   state.root.isLoading = false;
-      //   state.modal.carData = action.payload;
-      // })
       .addMatcher((action) => action.type.endsWith("/pending"), handlePending)
       .addMatcher(
         (action) => action.type.endsWith("/rejected"),
