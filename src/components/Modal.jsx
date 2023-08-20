@@ -12,7 +12,7 @@ import {
   selectConditionsExpanded,
   selectFunctionalitiesExpanded,
 } from "../redux/selectors";
-import { AiOutlineClose, AiTwotonePhone } from "react-icons/ai";
+import { AiOutlineClose } from "react-icons/ai";
 
 function Modal() {
   const carData = useSelector(selectCarData);
@@ -101,9 +101,6 @@ function Modal() {
             <span className="tracking-[-10px] text-orange-800 ">/</span>
             <span className="tracking-[-13px] text-orange-900 ">/</span>
             RENTACAR</p>
-            <span className="h-12 w-12 inline-block text-orange-800/80">
-              <AiTwotonePhone className="h-full w-full" />
-            </span>
           </a>
         </div>
         <div className="h-full py-3.5 px-1.5 col-span-1">
