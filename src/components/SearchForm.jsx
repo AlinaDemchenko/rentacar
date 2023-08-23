@@ -38,7 +38,7 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
       .integer("Enter a whole number"),
 
     brand: yup.string(),
-    price: yup.number(),
+    carPrice: yup.number(),
   });
 
   const formik = useFormik({
@@ -46,7 +46,7 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
       mileageFrom: "",
       mileageTo: "",
       brand: "",
-      price: "",
+      carPrice: "",
     },
     validationSchema: searchValidationSchema,
     onSubmit: (values, { resetForm }) => {
@@ -58,7 +58,7 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
       }
       values.mileageTo =
         values.mileageTo === "" ? maxMileage : values.mileageTo;
-      values.price = values.price === "" ? maxPrice : values.price;
+      values.carPrice = values.carPrice === "" ? maxPrice : values.carPrice;
       if (Object.keys(errors).length === 0) {
         handlerSetFilter(values);
         handlerResetPage();
@@ -113,19 +113,19 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
         aria-labelledby="choosePrice"
         className=" w-[230px] grow-0"
       >
-        <label className="label" htmlFor="price">
+        <label className="label" htmlFor="carPrice">
           Price/1 hour
         </label>
         <input
           className="input w-1/3"
           list="prices"
-          name="price"
-          id="price"
+          name="carPrice"
+          id="carPrice"
           placeholder="To $"
           type="text"
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
-          value={formik.values.price}
+          value={formik.values.carPrice}
         />
         <datalist id="prices">
           {prices.map((price) => (
@@ -134,13 +134,13 @@ function SearchForm({ handlerSetFilter, handlerResetPage, filteredCarList }) {
         </datalist>
       </div>
       <div className="flex items-center">
-        <label className="label" htmlFor="priceRange">
+        <label className="label" htmlFor="mileageRange">
           Сar mileage/km
         </label>
         <div
           role="group"
           aria-labelledby="chooseMileage"
-          id="priceRange"
+          id="mileageRange"
           className="inline w-36 relative"
         >
           <input

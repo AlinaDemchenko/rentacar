@@ -17,14 +17,21 @@ export const selectConditionsExpanded = (state) =>
 
 export const selectPage = (state) => state.page;
 
-export const selectPriceOptions = createSelector([selectCars], (cars) => {
+export const selectMaxPrice = createSelector([selectCars], (cars) => {
+  const rentalPrices = cars.map((obj) =>
+  parseInt(obj.rentalPrice.replace("$", "")));
+  const maxPrice = Math.max(...rentalPrices);
+ return Math.ceil(maxPrice / 10) * 10;
+});
+
+export const selectPriceOptions = createSelector([selectCars, selectMaxPrice], (cars, maxPrice) => {
   const rentalPrices = cars.map((obj) =>
     parseInt(obj.rentalPrice.replace("$", ""))
   );
   const minPrice = Math.min(...rentalPrices);
-  const maxPrice = Math.max(...rentalPrices);
+  const minRoundedPrice = Math.ceil(minPrice / 10) * 10;
   let priceOptions = [];
-  for (let i = minPrice; i <= maxPrice; i += 10) {
+  for (let i = minRoundedPrice; i <= maxPrice; i += 10) {
     priceOptions.push(i);
   }
   return priceOptions;
@@ -47,13 +54,6 @@ export const selectMaxMileage = createSelector([selectCars], (cars) => {
   return maxMileage;
 });
 
-export const selectMaxPrice = createSelector([selectCars], (cars) => {
-  const rentalPrices = cars.map((obj) =>
-    parseInt(obj.rentalPrice.replace("$", ""))
-  );
-  return Math.max(...rentalPrices);
-});
-
 export const selectBrands = createSelector([selectCars], (cars) => {
   const uniqueMakesSet = new Set(cars.map((car) => car.make));
   return Array.from(uniqueMakesSet);
@@ -66,7 +66,7 @@ export const selectFilteredCarList = createSelector(
     return cars.filter((car) => {
       return (
         car.make.includes(filter?.brand) &&
-        parseInt(car.rentalPrice.slice(1)) <= +filter.price &&
+        parseInt(car.rentalPrice.slice(1)) <= +filter.carPrice &&
         car.mileage >= mileageFrom &&
         car.mileage <= filter.mileageTo
       );
@@ -81,7 +81,7 @@ export const selectFilteredFavorites = createSelector(
     return favorites.filter((car) => {
       return (
         car.make.includes(filter?.brand) &&
-        parseInt(car.rentalPrice.slice(1)) <= +filter.price &&
+        parseInt(car.rentalPrice.slice(1)) <= +filter.carPrice &&
         car.mileage >= mileageFrom &&
         car.mileage <= filter.mileageTo
       );
