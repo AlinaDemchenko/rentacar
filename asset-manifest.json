@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/rentacar/static/css/main.92561d42.css",
-    "main.js": "/rentacar/static/js/main.1ab12d37.js",
-    "static/js/395.b572bc65.chunk.js": "/rentacar/static/js/395.b572bc65.chunk.js",
-    "static/js/875.2d616df1.chunk.js": "/rentacar/static/js/875.2d616df1.chunk.js",
+    "main.js": "/rentacar/static/js/main.42bc0c79.js",
+    "static/js/395.93cec467.chunk.js": "/rentacar/static/js/395.93cec467.chunk.js",
+    "static/js/875.630c2e78.chunk.js": "/rentacar/static/js/875.630c2e78.chunk.js",
     "static/js/699.3844bb1f.chunk.js": "/rentacar/static/js/699.3844bb1f.chunk.js",
     "static/js/354.64c0dcc4.chunk.js": "/rentacar/static/js/354.64c0dcc4.chunk.js",
     "static/media/Hero.png": "/rentacar/static/media/Hero.b3fcdb26f4a53c869917.png",
     "static/media/lines2.png": "/rentacar/static/media/lines2.921d973a60ade84b6b84.png",
     "index.html": "/rentacar/index.html",
     "main.92561d42.css.map": "/rentacar/static/css/main.92561d42.css.map",
-    "main.1ab12d37.js.map": "/rentacar/static/js/main.1ab12d37.js.map",
-    "395.b572bc65.chunk.js.map": "/rentacar/static/js/395.b572bc65.chunk.js.map",
-    "875.2d616df1.chunk.js.map": "/rentacar/static/js/875.2d616df1.chunk.js.map",
+    "main.42bc0c79.js.map": "/rentacar/static/js/main.42bc0c79.js.map",
+    "395.93cec467.chunk.js.map": "/rentacar/static/js/395.93cec467.chunk.js.map",
+    "875.630c2e78.chunk.js.map": "/rentacar/static/js/875.630c2e78.chunk.js.map",
     "699.3844bb1f.chunk.js.map": "/rentacar/static/js/699.3844bb1f.chunk.js.map",
     "354.64c0dcc4.chunk.js.map": "/rentacar/static/js/354.64c0dcc4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.92561d42.css",
-    "static/js/main.1ab12d37.js"
+    "static/js/main.42bc0c79.js"
   ]
 }
